@@ -1,0 +1,22 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Google",
+      "author": "Google",
+      "value": 100
+    },
+    {
+      "id": 3,
+      "title": "teste 2",
+      "author": "teste Nome 2",
+      "value": 185
+    },
+    {
+      "id": 4,
+      "title": "teste 3",
+      "author": "teste Livro 3",
+      "value": 100
+    }
+  ]
+}

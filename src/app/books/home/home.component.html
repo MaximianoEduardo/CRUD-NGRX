@@ -1,0 +1,43 @@
+<div class="container mt-2">
+
+    <div class="row row-cols-1 mt-5 row-cols-md-3 g-4">
+
+
+        <div class="col" *ngFor="let book of books$ | async">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ book.title }}</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ book.author }}</li>
+                <li class="list-group-item">{{ book.value }}</li>
+              </ul>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a class="btn btn-dark" [routerLink]="['/edit', book.id]"> Editar </a>
+                <a class="btn btn-primary" (click)="openDeleteModel(book.id)"> Excluir </a>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+    </div>
+
+    <div class="d-grid mt-5 gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-dark me-md-2" routerLink="/add" type="button">Adicionar Livro</button>
+    </div>
+</div>
+
+  <div class="modal fade" id="deleteModel" tabindex="-1" aria-labelledby="DeleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="DeleteModalTitle">Deseja Realmente Excluir?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-danger" (click)="confirmDelete()" >Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>

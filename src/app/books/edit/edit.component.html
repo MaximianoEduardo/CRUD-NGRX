@@ -1,0 +1,29 @@
+<div class="container mt-5">
+
+
+    <button type="button" routerLink="" class="btn btn-dark mb-3"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+        <i class="bi bi-caret-left-fill"></i> Voltar
+    </button>
+
+    <legend> Alterar Livro </legend>
+
+    <div class="mb-3">
+        <label for="nameTitle" class="form-label">Nome:</label>
+        <input type="text" class="form-control" [(ngModel)]="bookForm.title" id="nameTitle" placeholder="Livro">
+    </div>
+    <div class="mb-3">
+        <label for="authorName" class="form-label">Nome do Autor:</label>
+        <input type="text" class="form-control" [(ngModel)]="bookForm.author" id="authorName" placeholder="Autor do Livro">
+    </div>
+    <div class="mb-3">
+        <label for="valueCost" class="form-label">Valor do Livro:</label>
+        <input type="number" class="form-control" [(ngModel)]="bookForm.value" id="valueCost" placeholder="100">
+    </div>
+   
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-dark me-md-2" type="submit" (click)="update()" >Salvar Livro</button>
+    </div>
+
+</div>
