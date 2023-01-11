@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { setAPIStatus } from 'src/app/shared/store/app.action';
-import { selectAppState } from 'src/app/shared/store/app.selector';
-import { Appstate } from 'src/app/shared/store/appstate';
-import { callBooksApi, deleteBookAPI } from '../store/books.action';
+import { callBooks, deleteBook } from '../store/books.action';
 import { selectorBooks } from '../store/books.selector';
 
 
@@ -18,7 +15,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private appStore: Store<Appstate>,
   ) { }
 
   books$ = this.store.pipe(select(selectorBooks));
@@ -27,21 +23,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.deleteModal = new  bootstrap.Modal(document.getElementById('deleteModel'))
-    this.store.dispatch(callBooksApi())
+    this.deleteModal = new  bootstrap.Modal(document.getElementById('deleteModel'));
+    this.store.dispatch(callBooks());
 
   }
 
   confirmDelete(){
-    this.store.dispatch(deleteBookAPI({ id : this.idTodelete}));
-    let appState$ = this.appStore.pipe(select(selectAppState));
+    this.store.dispatch(deleteBook({ id : this.idTodelete}));
 
-    appState$.subscribe(( data ) => {
-      if(data.apiStatus === 'sucess'){
-        this.appStore.dispatch(setAPIStatus({ apiStatus: { apiStatus:'', apiResponseMessage: '' }}))
-      }
-      this.deleteModal.hide();
-    });
+    this.deleteModal.hide();
+
   }
 
 

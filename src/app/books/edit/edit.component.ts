@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { switchMap } from 'rxjs';
-import { setAPIStatus } from 'src/app/shared/store/app.action';
-import { selectAppState } from 'src/app/shared/store/app.selector';
-import { Appstate } from 'src/app/shared/store/appstate';
 import { Book } from '../store/book';
-import { updateBookAPI } from '../store/books.action';
+import { updateBook } from '../store/books.action';
 import { selectorBookById } from '../store/books.selector';
 
 @Component({
@@ -18,7 +15,6 @@ export class EditComponent implements OnInit {
 
   constructor(
     private store:Store,
-    private appStore:Store<Appstate>,
     private route:ActivatedRoute,
     private router:Router,
   ) { }
@@ -55,16 +51,8 @@ export class EditComponent implements OnInit {
   }
 
   update(){
-    this.store.dispatch(updateBookAPI({updateBook: {...this.bookForm} }));
-
-    let appState$ = this.appStore.pipe(select(selectAppState));
-
-    appState$.subscribe(( data ) => {
-      if(data.apiStatus === 'sucess'){
-        this.appStore.dispatch(setAPIStatus({ apiStatus: { apiStatus:'', apiResponseMessage: '' }}))
-        this.router.navigate(['/']);
-      }
-    });
+    this.store.dispatch(updateBook({updateBook: {...this.bookForm} }));
+    this.router.navigate(['/']);
   }
 
 }

@@ -1,42 +1,63 @@
 import { createAction, props } from "@ngrx/store";
 import { Book } from "./book";
 
-export const callBooksApi = createAction(
-    '[Books API] call books api'
+export const callBooks = createAction(
+    '[Books] Collection of Books'
 )
 
 export const booksCallSucess = createAction(
-    '[Books API] books sucess from API',
+    '[Books] Collection of Books Sucess',
+    props<{ allBooks: Book[] }>()
+)
+
+export const booksCallFail = createAction(
+    '[Books] Collection of Books Fail',
     props<{ allBooks: Book[] }>()
 )
 
 
-export const bookSaveNewAPI = createAction(
-    '[Books API] create new book',
+export const newBook = createAction(
+    '[Book] Create New Book',
     props<{ payload: Book}>()
 )
 
-export const saveBookAPISucess = createAction(
-    '[Books API] new book save Sucess',
+export const newBookSucess = createAction(
+    '[Book] Create New Book Sucess',
     props<{ response: Book}>()
 )
 
-export const updateBookAPI = createAction(
-    '[Books API] update book',
+export const newBookFail = createAction(
+    '[Book] Create New book Fail',
+    props<{ response: Book}>()
+)
+
+export const updateBook = createAction(
+    '[Book] Update Book',
     props<{ updateBook: Book}>()
 )
 
-export const updateBookAPISucess = createAction(
-    '[Books API] update book Sucess',
+export const updateBookSucess = createAction(
+    '[Book] Update Book Sucess',
     props<{ response: Book}>()
 )
 
-export const deleteBookAPI = createAction(
-    '[Books API] delete book',
+export const updateBookFail = createAction(
+    '[Book] Update Book Sucess',
+    props<{ response: Book}>()
+)
+
+
+export const deleteBook = createAction(
+    '[Book] Delete book',
     props<{ id: number}>()
 )
 
-export const deleteBookAPISucess = createAction(
-    '[Books API] delete book Sucess',
+export const deleteBookSucess = createAction(
+    '[Book] Delete book Sucess',
+    props<{ id: number}>()
+)
+
+export const deleteBookFail = createAction(
+    '[Book] Delete book Fail',
     props<{ id: number}>()
 )

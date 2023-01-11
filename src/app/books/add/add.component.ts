@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { setAPIStatus } from 'src/app/shared/store/app.action';
-import { selectAppState } from 'src/app/shared/store/app.selector';
-import { Appstate } from 'src/app/shared/store/appstate';
+import { Store } from '@ngrx/store';
 import { Book } from '../store/book';
-import { bookSaveNewAPI } from '../store/books.action';
+import { newBook } from '../store/books.action';
 
 @Component({
   selector: 'app-add',
@@ -16,7 +13,6 @@ export class AddComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private appStore:Store<Appstate>,
     private router:Router
   ) { }
 
@@ -32,16 +28,8 @@ export class AddComponent implements OnInit {
   }
 
   save(){
-    this.store.dispatch(bookSaveNewAPI({ payload: {...this.bookForm} }));
-
-    let appState$ = this.appStore.pipe(select(selectAppState));
-
-    appState$.subscribe(( data ) => {
-      if(data.apiStatus === 'sucess'){
-        this.appStore.dispatch(setAPIStatus({ apiStatus: { apiStatus:'', apiResponseMessage: '' }}))
-        this.router.navigate(['/']);
-      }
-    });
+    this.store.dispatch(newBook({ payload: {...this.bookForm} }));
+    this.router.navigate(['/']);
 
   }
 
