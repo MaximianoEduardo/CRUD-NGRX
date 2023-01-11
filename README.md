@@ -8,6 +8,7 @@ Projeto Angular, com o propósito de utilizar NGRX.
 Clone o projeto
 
 ```bash
+  versão do node > 14.15
   git clone https://github.com/MaximianoEduardo/CRUD-NGRX
 ```
 
